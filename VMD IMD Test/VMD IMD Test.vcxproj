@@ -128,6 +128,11 @@
     <ClInclude Include="imd.h" />
     <ClInclude Include="vmdsock.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VMDIMDAPI.vcxproj">
+      <Project>{58e2f40e-c101-4183-968f-1845c0efb9e1}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
