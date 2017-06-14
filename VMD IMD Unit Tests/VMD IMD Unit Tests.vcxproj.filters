@@ -15,18 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\VMD IMD Test\imd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\VMD IMD Test\vmdsock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="VMD IMD Test\imd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VMD IMD Test\vmdsock.c">
+    <ClCompile Include="TestIMDSerialization.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
