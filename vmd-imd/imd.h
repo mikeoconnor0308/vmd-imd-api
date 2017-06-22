@@ -65,67 +65,67 @@ typedef struct {
 } IMDEnergies;      /**<                                           */
 
 /* Send control messages - these consist of a header with no subsequent data */
-extern int imd_disconnect(void *);   /**< leave sim running but close IMD  */
-extern int imd_pause(void *);        /**< pause simulation                 */
-extern int imd_kill(void *);         /**< kill simulation, shutdown IMD    */
-extern int imd_handshake(void *);    /**< check endianness, version compat */
-extern int imd_trate(void *, int32); /**< set IMD update transmission rate */
+int imd_disconnect(void *);   /**< leave sim running but close IMD  */
+int imd_pause(void *);        /**< pause simulation                 */
+int imd_kill(void *);         /**< kill simulation, shutdown IMD    */
+int imd_handshake(void *);    /**< check endianness, version compat */
+int imd_trate(void *, int32); /**< set IMD update transmission rate */
 
 /* Send data update messages */
 /**
  *  Send MDComm compatible forces
  *  Forces are in Kcal/mol/angstrom
  */
-extern int imd_send_mdcomm(void *, int32, const int32 *, const float *);
+int imd_send_mdcomm(void *, int32, const int32 *, const float *);
 
 /*
  * Serialize IMDEnergies struct into a char * buffer.
  */
-extern MODULE_API char * imd_serialize_energies(char* buffer, const IMDEnergies* energies);
+MODULE_API char * imd_serialize_energies(char* buffer, const IMDEnergies* energies);
 
 /*
  * Deserialize a buffer into a IMDEnergies struct;
  */
-extern MODULE_API char * imd_deserialize_energies(char* buffer, IMDEnergies* energies);
+MODULE_API char * imd_deserialize_energies(char* buffer, IMDEnergies* energies);
 
 /**
  *  Send energies
  */
-extern int imd_send_energies(void *, const IMDEnergies *);
+int imd_send_energies(void *, const IMDEnergies *);
 
 /**
  *  Send atom forces and coordinates
  *  Forces are in Kcal/mol/angstrom
  */
-extern int imd_send_fcoords(void *, int32, const float *);
+int imd_send_fcoords(void *, int32, const float *);
 
 /**
  *  recv_handshake returns 0 if server and client have the same relative
  *  endianism; returns 1 if they have opposite endianism, and -1 if there
  *  was an error in the handshake process.
  */
-extern int imd_recv_handshake(void *);
+int imd_recv_handshake(void *);
 
 /**
  *  Receive header and data
  */
-extern IMDType imd_recv_header(void *, int32 *);
+IMDType imd_recv_header(void *, int32 *);
 
 /**
  *  Receive MDComm-style forces
  *  Forces are in Kcal/mol/angstrom
  */
-extern int imd_recv_mdcomm(void *, int32, int32 *, float *);
+int imd_recv_mdcomm(void *, int32, int32 *, float *);
 
 /**
  *  Receive energies
  */
-extern int imd_recv_energies(void *, IMDEnergies *);
+int imd_recv_energies(void *, IMDEnergies *);
 
 /**
  *  Receive atom coordinates and forces
  *  Forces are in Kcal/mol/angstrom
  */
-extern int imd_recv_fcoords(void *, int32, float *);
+int imd_recv_fcoords(void *, int32, float *);
 
 #endif
