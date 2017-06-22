@@ -151,30 +151,30 @@ int imd_send_mdcomm(void *s, int32 n, const int32 *indices, const float *forces)
   return rc;
 }
 
-__declspec(dllexport) char * imd_serialize_int(char* buffer, int x)
+char * imd_serialize_int(char* buffer, int x)
 {
-  memcpy_s(buffer, 4 * sizeof(char), &x, 4 * sizeof(char));
+  memcpy(buffer, &x, 4 * sizeof(char));
   buffer += 4;
   return buffer;
 }
 
-__declspec(dllexport) char * imd_serialize_float(char* buffer, float x)
+char * imd_serialize_float(char* buffer, float x)
 {
-  memcpy_s(buffer, 4 * sizeof(char), &x, 4 * sizeof(char));
+  memcpy(buffer, &x, 4 * sizeof(char));
   buffer += 4;
   return buffer;
 }
 
-__declspec(dllexport) char * imd_deserialize_int(char* buffer, int * value)
+char * imd_deserialize_int(char* buffer, int * value)
 {
-  memcpy_s(value, sizeof(int), buffer, 4 * sizeof(char));
+  memcpy(value, buffer, 4 * sizeof(char));
   buffer += 4;
   return buffer;
 }
 
 char * imd_deserialize_float(char* buffer, float * value)
 {
-  memcpy_s(value, sizeof(float), buffer, 4 * sizeof(char));
+  memcpy(value, buffer, 4 * sizeof(char));
   buffer += 4;
   return buffer;
 }

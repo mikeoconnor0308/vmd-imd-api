@@ -26,6 +26,16 @@ typedef int     int32;
 typedef short   int32;
 #endif
 
+#ifdef _WIN32
+#  ifdef MODULE_API_EXPORTS
+#    define MODULE_API __declspec(dllexport)
+#  else
+#    define MODULE_API __declspec(dllimport)
+#  endif
+#else
+#  define MODULE_API
+#endif
+
 typedef enum IMDType_t {
   IMD_DISCONNECT,   /**< close IMD connection, leaving sim running */
   IMD_ENERGIES,     /**< energy data block                         */
@@ -71,12 +81,12 @@ extern int imd_send_mdcomm(void *, int32, const int32 *, const float *);
 /*
  * Serialize IMDEnergies struct into a char * buffer.
  */
-extern __declspec(dllexport)  char * imd_serialize_energies(char* buffer, const IMDEnergies* energies);
+extern MODULE_API char * imd_serialize_energies(char* buffer, const IMDEnergies* energies);
 
 /*
  * Deserialize a buffer into a IMDEnergies struct;
  */
-extern __declspec(dllexport) char * imd_deserialize_energies(char* buffer, IMDEnergies* energies);
+extern MODULE_API char * imd_deserialize_energies(char* buffer, IMDEnergies* energies);
 
 /**
  *  Send energies
