@@ -300,3 +300,19 @@ int imd_recv_energies(void *s, IMDEnergies *energies) {
 int imd_recv_fcoords(void *s, int32 n, float *coords) {
   return (imd_readn(s, (char *)coords, 12 * n) != 12 * n);
 }
+
+int imd_recv_periodic_box(void *s, int32 dim, float *box) {
+  return (imd_readn(s, (char *)box, 4 * dim * dim) != 4 * dim * dim);
+}
+
+
+int imd_send_periodic_box(void *s, int32 dim, const float *box) {
+  int rc;
+  int32 size = HEADERSIZE + 4 * dim * dim;
+  char *buf = (char *)malloc(sizeof(char) * size);
+  fill_header((IMDheader *)buf, IMD_PERIODICBOX, dim);
+  memcpy(buf + HEADERSIZE, box, 4 * dim * dim);
+  rc = (imd_writen(s, buf, size) != size);
+  free(buf);
+  return rc;
+}

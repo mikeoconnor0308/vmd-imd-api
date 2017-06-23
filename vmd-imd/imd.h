@@ -46,7 +46,8 @@ typedef enum IMDType_t {
   IMD_MDCOMM,       /**< MDComm style force data                   */
   IMD_PAUSE,        /**< pause the running simulation              */
   IMD_TRATE,        /**< set IMD update transmission rate          */
-  IMD_IOERROR       /**< indicate an I/O error                     */
+  IMD_IOERROR,       /**< indicate an I/O error                     */
+  IMD_PERIODICBOX   /**< periodic box */
 } IMDType;
 
 #define IMDENERGIESSIZE 10 *4
@@ -128,4 +129,15 @@ int imd_recv_energies(void *, IMDEnergies *);
  */
 int imd_recv_fcoords(void *, int32, float *);
 
+/**
+ * Send periodic box.
+ * Lengths are in angstroms. 
+ */ 
+int imd_send_periodic_box(void *, int32, const float*);
+
+/**
+ * Receive periodic box.
+ * Lengths are in angstroms. 
+ */ 
+int imd_recv_periodic_box(void *, int32, float*);
 #endif
